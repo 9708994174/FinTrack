@@ -36,10 +36,10 @@ export function AppHeader() {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="#">Settings</Link>
+            <Link href="/settings">Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="#">Support</Link>
+            <Link href="/support">Support</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
