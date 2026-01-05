@@ -27,7 +27,7 @@ export function HeroSection() {
       <div className="flex justify-center">
         {heroImage && (
           <Image
-            src={heroImage.imageUrl}
+            src="https://picsum.photos/seed/hero/1200/800"
             alt="FinTrack Dashboard"
             width={1200}
             height={800}
