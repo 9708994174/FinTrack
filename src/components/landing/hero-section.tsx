@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function HeroSection() {
-  const heroImage = PlaceHolderImages.find((p) => p.id === "hero-image");
-
   return (
-    <section className="container grid lg:grid-cols-2 gap-10 items-center py-12 md:py-24 lg:py-32">
-      <div className="space-y-6">
+    <section className="container grid lg:grid-cols-2 gap-12 items-center py-20 md:py-28">
+      <div className="space-y-6 animate-fade-in-up">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter">
           Take Control of Your
           <span className="text-primary"> Finances</span>
@@ -24,17 +21,15 @@ export function HeroSection() {
           </Button>
         </div>
       </div>
-      <div className="flex justify-center">
-        {heroImage && (
-          <Image
-            src="https://picsum.photos/seed/hero/1200/800"
-            alt="FinTrack Dashboard"
-            width={1200}
-            height={800}
-            className="rounded-lg shadow-2xl"
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
+      <div className="flex justify-center animate-fade-in">
+        <Image
+          src="https://picsum.photos/seed/hero/1200/800"
+          alt="FinTrack Dashboard"
+          width={1200}
+          height={800}
+          className="rounded-lg shadow-2xl"
+          data-ai-hint="finance dashboard"
+        />
       </div>
     </section>
   );
