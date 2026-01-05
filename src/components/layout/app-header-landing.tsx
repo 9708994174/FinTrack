@@ -17,6 +17,9 @@ export function AppHeader() {
             <Button asChild>
               <Link href="/dashboard">Get Started</Link>
             </Button>
+             <Button asChild variant="outline">
+              <Link href="/login">Login</Link>
+            </Button>
           </nav>
         </div>
       </div>
