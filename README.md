@@ -1,3 +1,5 @@
+#Built with love with the help of CipherSchools
+
 # Firebase Studio
 
 This is a NextJS starter in Firebase Studio.
