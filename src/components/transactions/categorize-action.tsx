@@ -1,6 +1,7 @@
 "use client"
 
-import { useFormState, useFormStatus } from "react-dom"
+import { useActionState } from "react"
+import { useFormStatus } from "react-dom"
 import { getCategoryForTransaction } from "@/lib/actions"
 import { Button } from "@/components/ui/button"
 import { Wand2, Loader2 } from "lucide-react"
@@ -31,7 +32,7 @@ export function CategorizeAction({
   onCategoryUpdate,
 }: CategorizeActionProps) {
   const initialState = { message: null, error: false, category: undefined }
-  const [state, dispatch] = useFormState(getCategoryForTransaction, initialState)
+  const [state, dispatch] = useActionState(getCategoryForTransaction, initialState)
 
   useEffect(() => {
     if (state.category) {
