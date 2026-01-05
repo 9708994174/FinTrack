@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Avatar,
   AvatarFallback,
@@ -34,10 +35,16 @@ export function AppHeader() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="#">Settings</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="#">Support</Link>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/login">Logout</Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

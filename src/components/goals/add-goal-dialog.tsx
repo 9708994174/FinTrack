@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -18,12 +19,25 @@ import { cn } from "@/lib/utils"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import * as React from "react"
+import { useToast } from "@/hooks/use-toast"
 
 export function AddGoalDialog({ children }: { children: React.ReactNode }) {
     const [date, setDate] = React.useState<Date>()
+    const [open, setOpen] = React.useState(false);
+    const { toast } = useToast();
+
+    const handleSave = () => {
+      // Here you would typically handle form submission,
+      // e.g., send data to an API or update state.
+      toast({
+        title: "Goal Created!",
+        description: "Your new financial goal has been saved.",
+      });
+      setOpen(false); // Close the dialog
+    };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -74,7 +88,10 @@ export function AddGoalDialog({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save Goal</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button type="submit" onClick={handleSave}>Save Goal</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

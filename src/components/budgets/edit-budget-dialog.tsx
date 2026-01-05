@@ -1,4 +1,7 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,21 +10,35 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { categories } from "@/types"
+} from "@/components/ui/select";
+import { categories } from "@/types";
+import { useToast } from "@/hooks/use-toast";
 
 export function EditBudgetDialog({ children }: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleSave = () => {
+    // In a real app, you'd save the budget here.
+    toast({
+      title: "Budget Saved",
+      description: "Your new budget has been set successfully.",
+    });
+    setOpen(false); // Close dialog on save
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -40,11 +57,13 @@ export function EditBudgetDialog({ children }: { children: React.ReactNode }) {
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
-                {categories.filter(c => c !== 'Salary').map(category => (
-                  <SelectItem key={category} value={category}>
-                    {category}
-                  </SelectItem>
-                ))}
+                {categories
+                  .filter((c) => c !== "Salary")
+                  .map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
               </SelectContent>
             </Select>
           </div>
@@ -52,13 +71,23 @@ export function EditBudgetDialog({ children }: { children: React.ReactNode }) {
             <Label htmlFor="amount" className="text-right">
               Amount
             </Label>
-            <Input id="amount" type="number" placeholder="e.g., 500" className="col-span-3" />
+            <Input
+              id="amount"
+              type="number"
+              placeholder="e.g., 500"
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save Budget</Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button type="submit" onClick={handleSave}>
+            Save Budget
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -22,9 +22,6 @@ export function HeroSection() {
           <Button asChild size="lg">
             <Link href="/dashboard">Get Started for Free</Link>
           </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#">Learn More</Link>
-          </Button>
         </div>
       </div>
       <div className="flex justify-center">
